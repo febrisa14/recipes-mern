@@ -2,7 +2,8 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 
-import {UserRouter} from "./routes/users.js";
+import { UserRouter } from "./routes/users.js";
+import { RecipesRouter } from "./routes/recipes.js";
 
 const app = express();
 
@@ -10,12 +11,13 @@ app.use(express.json())
 app.use(cors())
 
 app.use("/auth", UserRouter);
+app.use("/recipes", RecipesRouter);
 
 mongoose.connect("mongodb://127.0.0.1:27017/mern_recipes")
-    .then(()=> {
+    .then(() => {
         console.log('Database connected');
     })
-    .catch((error)=> {
+    .catch((error) => {
         console.log(error);
     });
 
